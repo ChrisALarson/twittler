@@ -55,14 +55,17 @@ $(document).ready(function(){
     var index = tweetArr.length - 1;
     while(index >= 0){
       var tweet = tweetArr[index];
-      var $tweet = $(`<div></div>`);
+      var $tweet = $(`<div class="tweet"></div>`);
 
+      let $avatar = $(`<div class="avatar"><img src="images/abraham-lincoln.png"/></div>`);
+
+      let $content = $(`<div class="content"></div>`);
       let $user = $(`<h4>@${tweet.user}</h4>`);
       let $message = $(`<p>${tweet.message}</p>`);
       let $created_at = $(`<p>${moment(tweet.created_at).fromNow()}</p>`);
 
-      $tweet.append($user, $message, $created_at);
-   
+      $content.append($user, $message, $created_at);
+      $tweet.append($avatar, $content);
       $tweet.appendTo($tweetsContainer);
       index -= 1;
      }
