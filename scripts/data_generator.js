@@ -1,8 +1,3 @@
-/*
- * NOTE: This file generates fake tweet data, and is not intended to be part of your implementation.
- * You can safely leave this file untouched, and confine your changes to index.html.
- */
-
 // set up data structures
 window.streams = {};
 streams.home = [];
@@ -12,6 +7,9 @@ streams.users.sharksforcheap = [];
 streams.users.mracus = [];
 streams.users.douglascalhoun = [];
 window.users = Object.keys(streams.users);
+
+window.visitor = 'visitor';
+streams.users.visitor = [];
 
 // utility function for adding tweets to our data structures
 var addTweet = function(newTweet){
@@ -38,21 +36,30 @@ var randomMessage = function(){
 };
 
 // generate random tweets on a random schedule
-var generateRandomTweet = function(){
+var generateRandomTweet = function(time){
   var tweet = {};
+
   tweet.user = randomElement(users);
   tweet.message = randomMessage();
-  tweet.created_at = new Date();
+  
+  if (time) {
+    tweet.created_at = new Date(time);
+  } else {
+    tweet.created_at = new Date();
+  }
+
   addTweet(tweet);
 };
 
-for(var i = 0; i < 10; i++){
-  generateRandomTweet();
+for(var i = 100; i > 0; i--){
+  let time = new Date() - i * 10000000;
+
+  generateRandomTweet(time);
 }
 
 var scheduleNextTweet = function(){
   generateRandomTweet();
-  setTimeout(scheduleNextTweet, Math.random() * 1500);
+  setTimeout(scheduleNextTweet, Math.random() * 15000);
 };
 scheduleNextTweet();
 
@@ -65,5 +72,6 @@ var writeTweet = function(message){
   var tweet = {};
   tweet.user = visitor;
   tweet.message = message;
+  tweet.created_at = new Date();
   addTweet(tweet);
 };
