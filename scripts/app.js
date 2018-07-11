@@ -33,9 +33,16 @@ $(document).ready(function(){
     filterUser($(this).context.textContent.substr(1));
   });
 
-  $('.select-user').click(function() {
+
+  $('.tweets-container').on("click", "img", function() {
+    filterUser($(this).context.className);
+  });
+
+
+  $('.home').click(function() {
     filterUser($(this).context.value);
-  })
+  });
+
 
   $('#tweet-form').submit(function(event) {
     event.preventDefault();
@@ -57,12 +64,12 @@ $(document).ready(function(){
       var tweet = tweetArr[index];
       var $tweet = $(`<div class="tweet"></div>`);
 
-      let $avatar = $(`<div class="avatar"><img src="images/abraham-lincoln.png"/></div>`);
+      let $avatar = $(`<div class="avatar"><img src="images/${tweet.user}.png" class="${tweet.user}"/></div>`);
 
       let $content = $(`<div class="content"></div>`);
       let $user = $(`<h4>@${tweet.user}</h4>`);
       let $message = $(`<p>${tweet.message}</p>`);
-      let $created_at = $(`<p>${moment(tweet.created_at).fromNow()}</p>`);
+      let $created_at = $(`<h6>${moment(tweet.created_at).fromNow()}</h6>`);
 
       $content.append($user, $message, $created_at);
       $tweet.append($avatar, $content);

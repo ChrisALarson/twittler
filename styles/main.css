@@ -43,18 +43,36 @@ table {
   border-spacing: 0;
 }
 /* Styles */
+
+html {
+  font-family: "Lato", "Open Sans", "Helvetica Neue", Helvetica, Arial, sans-serif;
+}
+
+body {
+  background-color: #00aced;
+}
+
 .tweet {
   display: flex;
   flex-wrap: wrap;
-  width: 500px;
-  margin:10px 10px 10px 10px;
-  border: 2px solid black;
-  padding:10px 10px 10px 10px;
+  width: 800px;
+  margin:5px 10px 5px 10px;
+  border: 1px solid gray;
+  padding:20px 20px 20px 20px;
+  background-color: white;
+}
+
+.tweet:hover {
+  background-color: #E1E8ED;
 }
 
 .avatar {
-  width: 48px;
-  height: 48px
+  width: 75px;
+  height: 75px
+}
+
+.content {
+  margin-left: 20px;
 }
 
 img {
@@ -65,3 +83,43 @@ img {
 h4:hover, img:hover {
   cursor: pointer;
 }
+
+h4, p {
+  margin-bottom: 10px;
+}
+
+h6 {
+  font-style: italic;
+  font-size: 16px;
+  color: grey;
+}
+
+h4 {
+  font-style: bold;
+  font-size: 22px;
+}
+
+p {
+  font-size: 28px;
+}
+
+
+
+/*
+
+for now:
+(x) clickable image -> filter function
+(x) 
+unique avatar for each user, more colors
+margin left on the text content
+space between user name, message, and time ago
+shrink the time ago
+increase user name size? increase message size?
+background color on whole page
+while hovering over tweet change the background color
+
+later:
+some kind of bird logo / icon
+avatar panel top left -> while visitor avatar, tweet count?
+trend box -> filter by trend? (sort by count)
+*/
