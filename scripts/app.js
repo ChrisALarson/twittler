@@ -110,13 +110,20 @@ $(document).ready(function(){
   const renderProfile = () => {
     let $profileData = $('.profile-data');
     $profileData.html('');
+    let $profileImageContainer = $('.profile-img-container');
+    $profileImageContainer.html('');
 
-    let numVisitorTweets = streams.users.visitor.length;
-    let numVisitorFollowers = Math.floor((new Date() - 1499999999999) / 1000);
-    let $userHandle = $(`<h2 class="user-handle user-link" data-user="visitor">@visitor</h2>`);
-    let $tweetCount = $(`<p class="tweet-count user-link" data-user="visitor">${numVisitorTweets} tweets</p>`);
-    let $followerCount = $(`<p class="follower-count">${numVisitorFollowers.toLocaleString()} followers</p>`);
+    let user = (targetUser === 'all' || targetTrend) ? 'visitor' : targetUser;
+    let numUserTweets = streams.users[user].length;
+    // generating number of followers based on current date (for us) or user name (for prebuilt users)
+    let numUserFollowers = (user === 'visitor') ? Math.floor((new Date() - 1499999999999) / 1000) : user.split('').reduce((acc, element) => acc + element.charCodeAt(), 0) * 2;    
 
+    let $userProfileImg = $(`<img src="images/${user}.png" alt="Profile Picture" class="profile-img user-link" data-user="${user}"></img>`)
+    $profileImageContainer.append($userProfileImg);
+
+    let $userHandle = $(`<h2 class="user-handle user-link" data-user="${user}">@${user}</h2>`);
+    let $tweetCount = $(`<p class="tweet-count user-link" data-user="${user}">${numUserTweets} tweets</p>`);
+    let $followerCount = $(`<p class="follower-count">${numUserFollowers.toLocaleString()} followers</p>`);
     $profileData.append($userHandle, $tweetCount, $followerCount);
   };
 
