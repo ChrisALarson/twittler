@@ -15,14 +15,18 @@ streams.trends = {};
 // utility function for adding tweets to our data structures
 var addTweet = function(newTweet){
   var username = newTweet.user;
-  streams.users[username].push(newTweet);
-  streams.home.push(newTweet);
+
+  let homeIndex = streams.home.push(newTweet) - 1;
+  streams.users[username].push(newTweet); 
+
   if (streams.trends[newTweet.trend]) {
-    streams.trends[newTweet.trend].push(newTweet);
+    streams.trends[newTweet.trend].push(newTweet); 
   } else {
     streams.trends[newTweet.trend] = [newTweet];
-  }
+  } 
 
+  // adding metadata to tweet about its location in the arrays
+  streams.home[homeIndex].homeIndex = homeIndex;
 };
 
 // utility function
@@ -49,6 +53,8 @@ var generateRandomTweet = function(time){
   tweet.user = randomElement(users);
   tweet.trend = randomElement(tags);
   tweet.message = randomMessage() + ' ' + tweet.trend;
+  tweet.likes = 0;
+  tweet.retweets = 0;
 
   if (time) {
     tweet.created_at = new Date(time);
@@ -67,7 +73,7 @@ for(var i = 100; i > 0; i--){
 
 var scheduleNextTweet = function(){
   generateRandomTweet();
-  setTimeout(scheduleNextTweet, Math.random() * 15000);
+  setTimeout(scheduleNextTweet, Math.random() * 10000);
 };
 scheduleNextTweet();
 
@@ -95,5 +101,14 @@ var writeTweet = function(message){
   tweet.message = message;
   tweet.created_at = new Date();
   tweet.trend = getTrend(message);
+  if (!tags.includes(tweet.trend)) {
+    tags.push(tweet.trend);
+    tags.push(tweet.trend);
+    tags.push(tweet.trend);
+    tags.push(tweet.trend);
+    tags.push(tweet.trend);
+  }
+  tweet.likes = 0;
+  tweet.retweets = 0;
   addTweet(tweet);
 };

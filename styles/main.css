@@ -22,6 +22,7 @@ time, mark, audio, video {
   font: inherit;
   vertical-align: baseline;
 }
+
 /* HTML5 display-role reset for older browsers */
 article, aside, details, figcaption, figure,
 footer, header, hgroup, menu, nav, section {
@@ -180,11 +181,6 @@ body {
   border: 1px solid rgba(0,0,0,0.5);
 }
 
-/* .trends-display, .followers-display, .profile {
-  background-color: white;
-  box-shadow: 1px 2px 1px rgba(0,0,0,0.5);
-} */
-
 .tweet:hover {
   background-color: #E1E8ED;
 }
@@ -243,7 +239,6 @@ html {
 }
 
 .user-handle {
-  /* text-align: right; */
   font-weight: bold;
   font-size: 20px;
   text-shadow: 1px 2px 1px rgba(0,0,0,0.5);
@@ -324,18 +319,21 @@ html {
   cursor: pointer;
 }
 
-
 /*
-tweets:
-  - increase top/bottom padding
-  - increase margin between text elements
-  - make time ago font weight lighter, and lighter color
-  - small border radius
-  - get avatar padded from left side of tweet container
+ - pad the avatar to the left
+ - add ability to click into user's profile from "@--" and "x tweets"
+ - when user tweets, display 'all'
+ - clean up css, clean up JS
+ - add modal when tweet is clicked
+ - track number of likes
+ - add retweets
+ - add search
 
-profile, trends display, followers display:
-  - background color same as body
-  - remove border and shadow
-  - font colors white
-
+ - CSS:
+   - POSITIONING
+    - GRID
+    - TWEET 
+    - ...
+   - BORDERS
+   - TYPOGRAPHY
 */
