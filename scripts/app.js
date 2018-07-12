@@ -30,9 +30,11 @@ $(document).ready(function(){
 
   const addRetweet = (tweetIndex, tweetTextContent = '', tweetUser = '') => {
     streams.home[tweetIndex].retweets = streams.home[tweetIndex].retweets + 1;
+    let newRetweetCount = streams.home[tweetIndex].retweets;
     let message = `RT: @${tweetUser}: ${tweetTextContent}`;
     writeTweet(message);
     renderDisplay();
+    console.log(`Retweeted "${tweetTextContent}"! Total retweets: `, newRetweetCount);
   };
 
   // event handlers
@@ -46,15 +48,16 @@ $(document).ready(function(){
     filterUser(user);
   });
 
-  $body.on('click', '.tweet', function () {
-    console.log($(this));
+  $body.on('click', '.like', function() {
+    let tweetIndex = $(this).context.parentElement.parentElement.dataset.homeindex;
+    let tweetText = $(this).context.parentElement.parentElement.children[1].children[1].innerText;
+    addLike(tweetIndex, tweetText);
   });
 
-  $body.on('dblclick', '.tweet', function() {
-    let tweetIndex = $(this).context.dataset.homeindex;
-    let tweetText = $(this).context.children[1].children[1].innerText;
-    let tweetUser = $(this).context.children[1].children[0].dataset.user;
-    addLike(tweetIndex, tweetText);
+  $body.on('click', '.retweet', function() {
+    let tweetIndex = $(this).context.parentElement.parentElement.dataset.homeindex;
+    let tweetText = $(this).context.parentElement.parentElement.children[1].children[1].innerText;
+    let tweetUser = $(this).context.parentElement.parentElement.children[1].children[0].dataset.user;
     addRetweet(tweetIndex, tweetText, tweetUser);
   });
 
@@ -133,13 +136,18 @@ $(document).ready(function(){
       let $tweet = $(`<div class="tweet" data-homeindex="${tweet.homeIndex}"></div>`);
       let $avatar = $(`<div class="avatar-img-container"><img src="images/${tweet.user}.png" class="avatar-img user-link" data-user="${tweet.user}"/></div>`);
       let $content = $(`<div class="content"></div>`);
-      
+      let $buttons = $(`<div class="buttons"></div>`);
+
       let $user = $(`<p class="handle user-link" data-user="${tweet.user}">@${tweet.user}</p>`);
       let $message = $(`<p class="message">${tweet.message}</p>`);
       let $created_at = $(`<p class="time">${moment(tweet.created_at).fromNow()}</p>`);
-  
       $content.append($user, $message, $created_at);
-      $tweet.append($avatar, $content);
+  
+      let $retweetButton = $(`<button class="retweet">RT</div>`);
+      let $likeButton = $(`<button class="like">Like</div>`);
+      $buttons.append($likeButton, $retweetButton);
+
+      $tweet.append($avatar, $content, $buttons);
       $tweetsDisplay.append($tweet);
     }
    };
