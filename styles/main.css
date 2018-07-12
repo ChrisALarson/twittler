@@ -73,6 +73,12 @@ section {
   grid-template-columns: 80% 20%;
 }
 
+.tweet {
+  display: grid;
+  grid-template-columns: 100px auto 75px;
+  grid-gap: 5px;
+}
+
 /* SIDEBARS */
 aside {
   display: flex;
@@ -155,16 +161,17 @@ main {
 }
 
 .tweet {
-  display: flex;
-  flex-wrap: nowrap;
   width: 100%;
-  align-self: center;
   margin-bottom: 15px;
   background-color: white;
   padding-top: 15px;
   padding-bottom: 15px;
   box-shadow: 1px 2px 1px rgba(0,0,0,0.5);
   border-radius: 25px;
+}
+
+.buttons {
+  align-self: center;
 }
 
 
@@ -187,6 +194,10 @@ body {
 
 .tweet-button {
   background-color: #DB5673;
+}
+
+.buttons:hover {
+  cursor: pointer;
 }
 
 *:focus {
@@ -270,6 +281,16 @@ html {
   color: white;
 }
 
+.tweet-action {
+  border-radius: 50%;
+  background-color: #DB5673;
+  color: white;
+  width: 35px;
+  height: 35px;
+  box-shadow: 1px 2px 1px rgba(0,0,0,0.1);
+  border: 1px solid rgba(0,0,0,0.1);
+}
+
 /* ------------------- */
 /* IMAGES */
 /* ------------------- */
@@ -277,7 +298,6 @@ html {
 .profile-img-container {
   width: 80%;
   max-width: 200px;
-  align-self: center;
   border-radius: 50%;
   border: 1px solid white;
   overflow: hidden;
@@ -291,6 +311,7 @@ html {
 }
 
 .avatar-img-container {
+  justify-self: center;
   width: 75px;
   height: 75px;
   min-width: 75px;
@@ -306,10 +327,6 @@ html {
   height: 100%;
 }
 
-.content {
-  margin-left: 1.5em;
-}
-
 .handle:hover, .avatar-img:hover, .logo-img:hover, .follower:hover, .trend:hover {
   cursor: pointer;
   color: green;
@@ -320,20 +337,9 @@ html {
 }
 
 /*
- - pad the avatar to the left
  - add ability to click into user's profile from "@--" and "x tweets"
- - when user tweets, display 'all'
- - clean up css, clean up JS
  - add modal when tweet is clicked
  - track number of likes
- - add retweets
  - add search
-
- - CSS:
-   - POSITIONING
-    - GRID
-    - TWEET 
-    - ...
-   - BORDERS
-   - TYPOGRAPHY
+ - switch to grid & clean up css
 */

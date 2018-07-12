@@ -26,6 +26,7 @@ $(document).ready(function(){
     streams.home[tweetIndex].likes = streams.home[tweetIndex].likes + 1;
     let newLikeCount = streams.home[tweetIndex].likes;
     console.log(`Liked "${tweetTextContent}"! Total likes: `, newLikeCount);
+    return newLikeCount;
   };
 
   const addRetweet = (tweetIndex, tweetTextContent = '', tweetUser = '') => {
@@ -35,6 +36,7 @@ $(document).ready(function(){
     writeTweet(message);
     renderDisplay();
     console.log(`Retweeted "${tweetTextContent}"! Total retweets: `, newRetweetCount);
+    return newRetweetCount;
   };
 
   // event handlers
@@ -51,14 +53,16 @@ $(document).ready(function(){
   $body.on('click', '.like', function() {
     let tweetIndex = $(this).context.parentElement.parentElement.dataset.homeindex;
     let tweetText = $(this).context.parentElement.parentElement.children[1].children[1].innerText;
-    addLike(tweetIndex, tweetText);
+    let newLikeCount = addLike(tweetIndex, tweetText);
+    $(this).context.nextSibling.innerHTML = newLikeCount.toString();
   });
 
   $body.on('click', '.retweet', function() {
     let tweetIndex = $(this).context.parentElement.parentElement.dataset.homeindex;
     let tweetText = $(this).context.parentElement.parentElement.children[1].children[1].innerText;
     let tweetUser = $(this).context.parentElement.parentElement.children[1].children[0].dataset.user;
-    addRetweet(tweetIndex, tweetText, tweetUser);
+    let newRetweetCount = addRetweet(tweetIndex, tweetText, tweetUser);
+    $(this).context.nextSibling.innerHTML = newRetweetCount.toString();
   });
 
   $tweetForm.on('submit', function(event) {
@@ -143,9 +147,11 @@ $(document).ready(function(){
       let $created_at = $(`<p class="time">${moment(tweet.created_at).fromNow()}</p>`);
       $content.append($user, $message, $created_at);
   
-      let $retweetButton = $(`<button class="retweet">RT</div>`);
-      let $likeButton = $(`<button class="like">Like</div>`);
-      $buttons.append($likeButton, $retweetButton);
+      let $retweetButton = $(`<button class="tweet-action retweet">RT!</div>`);
+      let $numRetweets = $(`<p class="retweets-display">${tweet.retweets}</p>`);
+      let $likeButton = $(`<button class="tweet-action like">+1</div>`);
+      let $numLikes = $(`<p class="likes-display">${tweet.likes}</p>`);
+      $buttons.append($likeButton, $numLikes, $retweetButton, $numRetweets);
 
       $tweet.append($avatar, $content, $buttons);
       $tweetsDisplay.append($tweet);
