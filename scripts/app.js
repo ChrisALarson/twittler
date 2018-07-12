@@ -33,15 +33,13 @@ $(document).ready(function(){
     streams.home[tweetIndex].retweets = streams.home[tweetIndex].retweets + 1;
     let newRetweetCount = streams.home[tweetIndex].retweets;
     let message = `RT: @${tweetUser}: ${tweetTextContent}`;
-    writeTweet(message);
-    renderDisplay();
-    console.log(`Retweeted "${tweetTextContent}"! Total retweets: `, newRetweetCount);
+    setTimeout(writeTweet, 150, message);
+    setTimeout(renderDisplay, 150);
     return newRetweetCount;
   };
 
   const addComment = (tweetIndex, tweetTextContent = '', comment) => {
     let newCommentCount = streams.home[tweetIndex].comments.push(comment);
-    console.log(`Commented on "${tweetTextContent}"! Total comments: `, newCommentCount);
     return newCommentCount;
   }
 
@@ -57,34 +55,37 @@ $(document).ready(function(){
   });
 
   $body.on('click', '.like', function() {
-    let tweetIndex = $(this).context.parentElement.parentElement.dataset.homeindex;
-    let tweetText = $(this).context.parentElement.parentElement.children[1].children[1].innerText;
+    let tweetIndex = $(this).context.parentElement.parentElement.parentElement.dataset.homeindex;
+    let tweetText = $(this).context.parentElement.parentElement.parentElement.children[1].children[1].innerText;
     let newLikeCount = addLike(tweetIndex, tweetText);
-    $(this).context.nextSibling.innerHTML = newLikeCount.toString() + ' likes';
+    $(this).context.nextSibling.innerHTML = newLikeCount.toString();
+    $(this).attr('src', 'images/like-filled.png');
   });
 
   $body.on('click', '.retweet', function() {
-    let tweetIndex = $(this).context.parentElement.parentElement.dataset.homeindex;
-    let tweetText = $(this).context.parentElement.parentElement.children[1].children[1].innerText;
-    let tweetUser = $(this).context.parentElement.parentElement.children[1].children[0].dataset.user;
+    let tweetIndex = $(this).context.parentElement.parentElement.parentElement.dataset.homeindex;
+    let tweetText = $(this).context.parentElement.parentElement.parentElement.children[1].children[1].innerText;
+    let tweetUser = $(this).context.parentElement.parentElement.parentElement.children[1].children[0].dataset.user;
     let newRetweetCount = addRetweet(tweetIndex, tweetText, tweetUser);
-    $(this).context.nextSibling.innerHTML = newRetweetCount.toString() + ' retweets';
+    $(this).context.nextSibling.innerHTML = newRetweetCount.toString();
+    $(this).attr('src', 'images/retweet-filled.png');
   });
 
   $body.on('click', '.comment', function() {
-    let tweetIndex = $(this).context.parentElement.parentElement.dataset.homeindex;
-    let tweetText = $(this).context.parentElement.parentElement.children[1].children[1].innerText;
+    let tweetIndex = $(this).context.parentElement.parentElement.parentElement.dataset.homeindex;
+    let tweetText = $(this).context.parentElement.parentElement.parentElement.children[1].children[1].innerText;
     let commentText = prompt('What do you think about this tweet?');
     let comment = {
       commenter: '@visitor',
       comment: commentText
     };
     let newCommentCount = addComment(tweetIndex, tweetText, comment);
-    $(this).context.nextSibling.innerHTML = newCommentCount.toString() + ' comments';
+    $(this).context.nextSibling.innerHTML = newCommentCount.toString();
+    $(this).attr('src', 'images/comment-filled.png');
   });
 
   $body.on('click', '.comments-display', function() {
-    let tweetIndex = $(this).context.parentElement.parentElement.dataset.homeindex;
+    let tweetIndex = $(this).context.parentElement.parentElement.parentElement.dataset.homeindex;
     let comments = streams.home[tweetIndex].comments;
     let commentsDisplay = '';
     comments.forEach(comment => {
@@ -183,14 +184,25 @@ $(document).ready(function(){
       let $created_at = $(`<p class="time">${moment(tweet.created_at).fromNow()}</p>`);
       $content.append($user, $message, $created_at);
   
-      let $retweetButton = $(`<button class="tweet-action retweet">RT!</div>`);
-      let $numRetweets = $(`<p class="retweets-display">${tweet.retweets} retweets</p>`);
-      let $likeButton = $(`<button class="tweet-action like">+1</div>`);
-      let $numLikes = $(`<p class="likes-display">${tweet.likes} likes</p>`);
-      let $commentButton = $(`<button class="tweet-action comment">?!</div>`);
-      let $numComments = $(`<p class="comments-display">${tweet.comments.length} comments</p>`);
+      let retweetImg = (tweet.retweets) ? 'retweet-filled' : 'retweet';
+      let $retweetContainer = $(`<div class="retweets-container tweet-data"></div>`);
+      let $retweetButton = $(`<img src="images/${retweetImg}.png" alt="Retweet" class="tweet-action retweet"></img>`);
+      let $numRetweets = $(`<span class="retweets-display">${tweet.retweets}</span>`);
+      $retweetContainer.append($retweetButton, $numRetweets);
 
-      $buttons.append($likeButton, $numLikes, $retweetButton, $numRetweets, $commentButton, $numComments);
+      let likeImg = (tweet.likes) ? 'like-filled' : 'like';
+      let $likeContainer = $(`<div class="likes-container tweet-data"></div>`);
+      let $likeButton = $(`<img src="images/${likeImg}.png" alt="Like" class="tweet-action like"></img>`);
+      let $numLikes = $(`<span class="likes-display">${tweet.likes}</span>`);
+      $likeContainer.append($likeButton, $numLikes);
+
+      let commentImg = (tweet.comments.length) ? 'comment-filled' : 'comment';
+      let $commentContainer = $(`<div class="comments-container tweet-data"></div>`);
+      let $commentButton = $(`<img src="images/${commentImg}.png" alt="Comment" class="tweet-action comment"></img>`)
+      let $numComments = $(`<span class="comments-display">${tweet.comments.length}</span>`);
+      $commentContainer.append($commentButton, $numComments);
+
+      $buttons.append($likeContainer, $retweetContainer, $commentContainer);
 
       $tweet.append($avatar, $content, $buttons);
       $tweetsDisplay.append($tweet);
@@ -205,5 +217,5 @@ $(document).ready(function(){
   };
 
   renderDisplay();
-  setInterval(renderDisplay, 12000);
+  setInterval(renderDisplay, 20000);
 });

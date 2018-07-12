@@ -6,6 +6,10 @@ streams.users.shawndrost = [];
 streams.users.sharksforcheap = [];
 streams.users.mracus = [];
 streams.users.douglascalhoun = [];
+streams.users.margaret = [];
+streams.users.leonardo = [];
+streams.users.brucelee = [];
+streams.users.rafael = [];
 window.users = Object.keys(streams.users);
 
 window.visitor = 'visitor';
@@ -66,7 +70,7 @@ var generateRandomTweet = function(time){
   addTweet(tweet);
 };
 
-for(var i = 90; i > 0; i--){
+for(var i = 100; i > 0; i--){
   let time = new Date() - i * 10000000;
 
   generateRandomTweet(time);
@@ -74,7 +78,7 @@ for(var i = 90; i > 0; i--){
 
 var scheduleNextTweet = function(){
   generateRandomTweet();
-  setTimeout(scheduleNextTweet, Math.random() * 17000);
+  setTimeout(scheduleNextTweet, Math.random() * 25000);
 };
 scheduleNextTweet();
 
@@ -103,14 +107,6 @@ var writeTweet = function(message){
   tweet.created_at = new Date();
   tweet.trend = getTrend(message);
   if (!tags.includes(tweet.trend)) {
-    tags.push(tweet.trend);
-    tags.push(tweet.trend);
-    tags.push(tweet.trend);
-    tags.push(tweet.trend);
-    tags.push(tweet.trend);
-    tags.push(tweet.trend);
-    tags.push(tweet.trend);
-    tags.push(tweet.trend);
     tags.push(tweet.trend);
     tags.push(tweet.trend);
     tags.push(tweet.trend);
