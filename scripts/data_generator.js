@@ -73,7 +73,7 @@ for(var i = 100; i > 0; i--){
 
 var scheduleNextTweet = function(){
   generateRandomTweet();
-  setTimeout(scheduleNextTweet, Math.random() * 10000);
+  setTimeout(scheduleNextTweet, Math.random() * 8000);
 };
 scheduleNextTweet();
 
@@ -102,6 +102,13 @@ var writeTweet = function(message){
   tweet.created_at = new Date();
   tweet.trend = getTrend(message);
   if (!tags.includes(tweet.trend)) {
+    tags.push(tweet.trend);
+    tags.push(tweet.trend);
+    tags.push(tweet.trend);
+    tags.push(tweet.trend);
+    tags.push(tweet.trend);
+    tags.push(tweet.trend);
+    tags.push(tweet.trend);
     tags.push(tweet.trend);
     tags.push(tweet.trend);
     tags.push(tweet.trend);
