@@ -52,6 +52,10 @@ table {
 /* STRUCTURE */
 /* ------------------- */
 
+html {
+    overflow-y: scroll;
+}
+
 /* GRIDS */
 body {
   display: grid;
@@ -356,7 +360,6 @@ html {
 
 /*
  - TODO:
-  - add ability to click into user's profile from "@--" and "x tweets"
   - add modal when tweet is clicked
   - add search
   - switch to grid & clean up css
