@@ -1,83 +1,130 @@
-/*
-1. Show new tweets from the tweeters (via button push or/ auto refresuh)
-  // display streams.home tweet object
-    "displayTweets" function, and interval to execute the functioon
-   // Create a container in the center of the home page that displays all genereated tweets.
-   Optional - // Display max number of tweets ~100
-   // Each tweet has its own div that displays the user, message, time stamp.
-2. Display the timestamp associated with each tweet
-3. Design the interface to look nice
-  // Header at top of page showing Twittler title, add image/icon
-// Footer to indicate bottom of page
-// Optional display user profile top left and trends panel under the user profile.
-4. Enable displaying a specific tweeter's timeline
-*/
-
-/* 
- filter based on link click?
-*/
-
-
 $(document).ready(function(){
-  var $body = $('body');
-  let $tweetsContainer = $(".tweets-container");
- 
+  let $body = $('body');
+  let $tweetsDisplay = $(".tweets-display");
+  let $followersDisplay = $('.followers-display');
   let targetUser = "";
+  let targetTrend = "";
+  let targetTweets = "all";
 
   const filterUser = (userName) => {
     targetUser = userName;
-    renderTweets();
+    targetTweets = "user";
+    renderDisplay();
   };
 
-  $('.tweets-container').on("click", "h4", function() {
-    filterUser($(this).context.textContent.substr(1));
+  const filterTrend = (trend) => {
+    targetTrend = trend;
+    targetTweets = 'trend';
+    renderDisplay();
+  };
+
+  $('.trends-display').on("click", ".trend", function() {
+    filterTrend($(this).context.textContent);
   });
 
-
-  $('.tweets-container').on("click", "img", function() {
-    filterUser($(this).context.className);
+  $tweetsDisplay.on("click", ".handle", function() {
+    filterUser($(this).context.classList[0]);
   });
 
-
-  $('.home').click(function() {
-    filterUser($(this).context.value);
+  $tweetsDisplay.on("click", ".avatar-img", function() {
+    filterUser($(this).context.classList[0]);
   });
 
+  $followersDisplay.on('click', '.follower', function() {
+    filterUser($(this).context.classList[0]);
+  });
 
-  $('#tweet-form').submit(function(event) {
+  $(".profile-img-container").on("click", function() {
+    filterUser("visitor");
+  });
+
+  $('.logo-img-container').click(function() {
+    targetTweets = 'all';
+    renderDisplay();
+  });
+
+  $('.tweet-form').submit(function(event) {
     event.preventDefault();
-    let $tweetTextbox = $('#tweet-textbox');
+    let $tweetTextbox = $('.tweet-textbox');
     if ($tweetTextbox.val()) {
       writeTweet($tweetTextbox.val());
-      renderTweets();
+      renderDisplay();
     }
     $tweetTextbox.val('');
   });
 
+  const renderFollowers = () => {
+    let usersArr = users;
+    let $followers = $('.followers');
+     $followers.html('');
+
+     usersArr.forEach((user) => {
+       let $follower = $(`<p class="${user} follower">@${user}</p>`);
+       $followers.append($follower);
+     });
+   };
+
+  const renderTrends = () => {
+    let $trends = $('.trends');
+     $trends.html('');
+     let trends = Object.keys(streams.trends);
+     trends.forEach(trend => {
+      let $trend = $(`<h3 class="trend">${trend}</h3>`);
+
+      if (trend) $trends.append($trend);
+     });
+   };
+
+  const renderProfile = () => {
+    let numVisitorTweets = streams.users.visitor.length;
+
+     let numVisitorFollowers = Math.floor((new Date() - 1499999999999) / 1000);
+     let $userHandle = $(`<h2 class="user-handle">@visitor</h2>`);
+     let $tweetCount = $(`<p class="tweet-count">Tweets: ${numVisitorTweets}</p>`);
+     let $followerCount = $(`<p class="follower-count">Followers: ${numVisitorFollowers.toLocaleString()}</p>`);
+
+     let $profileData = $('.profile-data');
+     $profileData.html('');
+     $profileData.append($userHandle, $tweetCount, $followerCount);
+  };
 
   const renderTweets = () => {
-    $tweetsContainer.html('');
-    let tweetArr = (targetUser) ? streams.users[targetUser] : streams.home;
+    $tweetsDisplay.html('');
+    let tweetArr;
+    if (targetTweets === 'all') {
+      tweetArr = streams.home;
+    } else if (targetTweets === 'user') {
+      tweetArr = streams.users[targetUser];
+    } else if (targetTweets === 'trend') {
+      tweetArr = streams.trends[targetTrend];
+    }
 
-    var index = tweetArr.length - 1;
+    let index = tweetArr.length - 1;
     while(index >= 0){
-      var tweet = tweetArr[index];
-      var $tweet = $(`<div class="tweet"></div>`);
+      let tweet = tweetArr[index];
+      let $tweet = $(`<div class="tweet"></div>`);
 
-      let $avatar = $(`<div class="avatar"><img src="images/${tweet.user}.png" class="${tweet.user}"/></div>`);
+      let $avatar = $(`<div class="avatar-img-container"><img src="images/${tweet.user}.png" class="${tweet.user} avatar-img"/></div>`);
 
       let $content = $(`<div class="content"></div>`);
-      let $user = $(`<h4>@${tweet.user}</h4>`);
-      let $message = $(`<p>${tweet.message}</p>`);
-      let $created_at = $(`<h6>${moment(tweet.created_at).fromNow()}</h6>`);
+      let $user = $(`<p class="${tweet.user} handle">@${tweet.user}</p>`);
+      let $message = $(`<p class="message">${tweet.message}</p>`);
+      let $created_at = $(`<p class="time">${moment(tweet.created_at).fromNow()}</p>`);
 
       $content.append($user, $message, $created_at);
       $tweet.append($avatar, $content);
-      $tweet.appendTo($tweetsContainer);
+      $tweet.appendTo($tweetsDisplay);
       index -= 1;
      }
+   };
+
+  const renderDisplay = () => {
+    renderFollowers();
+    renderTweets();
+    renderProfile();
+    renderTrends();
   };
 
-  renderTweets();
-  setInterval(renderTweets, 10000);
+  renderDisplay();
+  setInterval(renderDisplay, 10000);
 });

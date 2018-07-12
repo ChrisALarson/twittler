@@ -8,16 +8,50 @@
     <link rel="stylesheet" type="text/css" href="styles/main.css">
   </head>
   <body>
-    <form id="tweet-form">
-      <input id="tweet-textbox" type="text">
-      <button type="submit">Post Tweet</button>
-    </form>
-    <div class="nav-container">
-      <button class="home" value="">Home</button>
-    </div>
-    <div class="main-container">
-      <div class="tweets-container">
+    <header>
+      <div class="logo-img-container">
+        <img src="images/twitter-logo.png" alt="Home Button" class="logo-img"></img>
       </div>
-    </div>
+    </header>
+
+    <section>
+      <aside>
+        <div class="profile">
+          <div class="profile-img-container">
+            <img src="images/visitor.png" alt="Profile Picture" class="profile-img"></img>
+          </div>
+          <div class="profile-data">
+          </div>
+        </div>
+        <div class="trends-display">
+          <div class="trends-header">
+            <h2>Current Trends</h2>
+          </div>
+          <div class="trends">
+          </div>
+        </div>
+      </aside>
+      <main>
+        <div class="tweet-creator">
+          <form class="tweet-form">
+             <input class="tweet-textbox" type="text" placeholder="What's happening?">
+             <button class="tweet-button" type="submit">Tweet!</button>
+          </form>
+        </div>
+        <div class="tweets-display">
+        </div>
+      </main>
+      <aside>
+        <div class="followers-display">
+          <div class="followers-header">
+            <h2>Followers</h2>
+          </div>
+          <div class="followers">
+          </div>
+        </div>
+      </aside>
+    </section>
+    <footer>
+    </footer>
   </body>
 </html>
