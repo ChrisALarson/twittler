@@ -64,7 +64,7 @@ header {
 
 section {
   display: grid;
-  grid-template-columns: 22% 66% 12%;
+  grid-template-columns: 22% 62% 16%;
 }
 
 .tweet-form {
@@ -89,7 +89,7 @@ aside {
 .followers-header, .trends-header {
   text-align: center;
   margin-top: 10px;
-  margin-bottom: 10px;
+  margin-bottom: 15px;
 }
 
 .followers, .trends {
@@ -158,11 +158,12 @@ main {
   flex-wrap: nowrap;
   width: 100%;
   align-self: center;
-  margin-bottom: 10px;
+  margin-bottom: 15px;
   background-color: white;
-  padding-top: 10px;
-  padding-bottom: 10px;
+  padding-top: 15px;
+  padding-bottom: 15px;
   box-shadow: 1px 2px 1px rgba(0,0,0,0.5);
+  border-radius: 25px;
 }
 
 
@@ -179,10 +180,10 @@ body {
   border: 1px solid rgba(0,0,0,0.5);
 }
 
-.trends-display, .followers-display, .profile {
+/* .trends-display, .followers-display, .profile {
   background-color: white;
   box-shadow: 1px 2px 1px rgba(0,0,0,0.5);
-}
+} */
 
 .tweet:hover {
   background-color: #E1E8ED;
@@ -206,43 +207,63 @@ html {
 
 .time {
   font-style: italic;
-  font-size: 16px;
-  color: grey;
+  font-weight: 500;
+  font-size: 14px;
+  color: #bbbbbb;
 }
 
 .handle {
   font-weight: bold;
-  font-size: 20px;
-  margin-bottom: 10px;
+  font-size: 18px;
+  margin-bottom: 12px;
 }
 
 .message {
   font-size: 28px;
-  margin-bottom: 10px;
+  margin-bottom: 12px;
+}
+
+.profile, .trends-display, .followers-display {
+  color: white;
+  text-align: center;
 }
 
 .followers-header {
-  font-size: 20px;
+  font-size: 26px;
   font-weight: bold;
+  color: white;
+  text-shadow: 1px 2px 1px rgba(0,0,0,0.5);
 }
 
 .trends-header {
-  font-size: 20px;
+  font-size: 26px;
   font-weight: bold;
+  color: white;
+  text-shadow: 1px 2px 1px rgba(0,0,0,0.5);
 }
 
 .user-handle {
-  text-align: right;
+  /* text-align: right; */
+  font-weight: bold;
+  font-size: 20px;
+  text-shadow: 1px 2px 1px rgba(0,0,0,0.5);
+  margin-bottom: 10px;
+}
+
+.tweet-count, .follower-count {
+  margin-bottom: 10px;
 }
 
 .tweet-textbox {
   font-size: 22px;
   padding-left: 20px;
 }
+
 .tweet-textbox::-webkit-input-placeholder { /* Chrome/Opera/Safari */
   color: #bbbbbb;
   font-size: 22px;
 }
+
 .tweet-textbox::-moz-placeholder { /* Firefox 19+ */
   color: #bbbbbb;
   font-size: 22px;
@@ -302,3 +323,19 @@ html {
 .profile-img, .tweet-button {
   cursor: pointer;
 }
+
+
+/*
+tweets:
+  - increase top/bottom padding
+  - increase margin between text elements
+  - make time ago font weight lighter, and lighter color
+  - small border radius
+  - get avatar padded from left side of tweet container
+
+profile, trends display, followers display:
+  - background color same as body
+  - remove border and shadow
+  - font colors white
+
+*/

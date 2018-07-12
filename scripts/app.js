@@ -80,8 +80,8 @@ $(document).ready(function(){
 
      let numVisitorFollowers = Math.floor((new Date() - 1499999999999) / 1000);
      let $userHandle = $(`<h2 class="user-handle">@visitor</h2>`);
-     let $tweetCount = $(`<p class="tweet-count">Tweets: ${numVisitorTweets}</p>`);
-     let $followerCount = $(`<p class="follower-count">Followers: ${numVisitorFollowers.toLocaleString()}</p>`);
+     let $tweetCount = $(`<p class="tweet-count">${numVisitorTweets} tweets</p>`);
+     let $followerCount = $(`<p class="follower-count">${numVisitorFollowers.toLocaleString()} followers</p>`);
 
      let $profileData = $('.profile-data');
      $profileData.html('');
