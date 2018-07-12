@@ -39,6 +39,12 @@ $(document).ready(function(){
     return newRetweetCount;
   };
 
+  const addComment = (tweetIndex, tweetTextContent = '', comment) => {
+    let newCommentCount = streams.home[tweetIndex].comments.push(comment);
+    console.log(`Commented on "${tweetTextContent}"! Total comments: `, newCommentCount);
+    return newCommentCount;
+  }
+
   // event handlers
   $trendsDisplay.on('click', '.trend', function() {
     let trend = $(this).context.dataset.trend;
@@ -63,6 +69,29 @@ $(document).ready(function(){
     let tweetUser = $(this).context.parentElement.parentElement.children[1].children[0].dataset.user;
     let newRetweetCount = addRetweet(tweetIndex, tweetText, tweetUser);
     $(this).context.nextSibling.innerHTML = newRetweetCount.toString() + ' retweets';
+  });
+
+  $body.on('click', '.comment', function() {
+    let tweetIndex = $(this).context.parentElement.parentElement.dataset.homeindex;
+    let tweetText = $(this).context.parentElement.parentElement.children[1].children[1].innerText;
+    let commentText = prompt('What do you think about this tweet?');
+    let comment = {
+      commenter: '@visitor',
+      comment: commentText
+    };
+    let newCommentCount = addComment(tweetIndex, tweetText, comment);
+    $(this).context.nextSibling.innerHTML = newCommentCount.toString() + ' comments';
+  });
+
+  $body.on('click', '.comments-display', function() {
+    let tweetIndex = $(this).context.parentElement.parentElement.dataset.homeindex;
+    let comments = streams.home[tweetIndex].comments;
+    let commentsDisplay = '';
+    comments.forEach(comment => {
+      commentsDisplay += `${comment.commenter}: ${comment.comment}`
+      commentsDisplay += '\n';
+    });
+    alert(commentsDisplay);
   });
 
   $tweetForm.on('submit', function(event) {
@@ -158,7 +187,10 @@ $(document).ready(function(){
       let $numRetweets = $(`<p class="retweets-display">${tweet.retweets} retweets</p>`);
       let $likeButton = $(`<button class="tweet-action like">+1</div>`);
       let $numLikes = $(`<p class="likes-display">${tweet.likes} likes</p>`);
-      $buttons.append($likeButton, $numLikes, $retweetButton, $numRetweets);
+      let $commentButton = $(`<button class="tweet-action comment">?!</div>`);
+      let $numComments = $(`<p class="comments-display">${tweet.comments.length} comments</p>`);
+
+      $buttons.append($likeButton, $numLikes, $retweetButton, $numRetweets, $commentButton, $numComments);
 
       $tweet.append($avatar, $content, $buttons);
       $tweetsDisplay.append($tweet);
@@ -173,5 +205,5 @@ $(document).ready(function(){
   };
 
   renderDisplay();
-  setInterval(renderDisplay, 10000);
+  setInterval(renderDisplay, 12000);
 });

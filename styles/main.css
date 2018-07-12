@@ -174,9 +174,20 @@ main {
   border-radius: 25px;
 }
 
+.content {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+}
+
 .buttons {
   align-self: center;
 }
+
+.time {
+  margin-top: auto;
+}
+
 
 
 /* ------------------- */
@@ -216,6 +227,10 @@ body {
   background-color: #DB5673;
 }
 
+.comment {
+  background-color: #bbbbbb;
+}
+
 /* ------------------- */
 /* FONTS */
 /* ------------------- */
@@ -232,14 +247,15 @@ html {
 }
 
 .handle {
-  font-weight: bold;
+  color: black;
+  font-weight: 550;
   font-size: 18px;
-  margin-bottom: 12px;
+  margin-bottom: 15px;
 }
 
 .message {
   font-size: 28px;
-  margin-bottom: 12px;
+  margin-bottom: 15px;
 }
 
 .profile, .trends-display, .followers-display {
@@ -294,23 +310,25 @@ html {
 }
 
 .tweet-action {
-  border-radius: 50%;
+  text-align: center;
+  font-size: 10px;
+  border-radius: 45%;
   color: white;
-  width: 35px;
-  height: 35px;
+  width: 31px;
+  height: 21px;
   box-shadow: 1px 2px 1px rgba(0,0,0,0.1);
   border: 1px solid rgba(0,0,0,0.1);
   margin-bottom: 3px;
 }
 
-.likes-display, .retweets-display {
+.likes-display, .retweets-display, .comments-display {
   font-size: 12px;
   font-weight: 300;
   font-style: italic;
 }
 
-.likes-display {
-  margin-bottom: 12px;
+.likes-display, .retweets-display {
+  margin-bottom: 8px;
 }
 
 /* ------------------- */

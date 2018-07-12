@@ -55,6 +55,7 @@ var generateRandomTweet = function(time){
   tweet.message = randomMessage() + ' ' + tweet.trend;
   tweet.likes = 0;
   tweet.retweets = 0;
+  tweet.comments = [];
 
   if (time) {
     tweet.created_at = new Date(time);
@@ -73,7 +74,7 @@ for(var i = 100; i > 0; i--){
 
 var scheduleNextTweet = function(){
   generateRandomTweet();
-  setTimeout(scheduleNextTweet, Math.random() * 12000);
+  setTimeout(scheduleNextTweet, Math.random() * 20000);
 };
 scheduleNextTweet();
 
@@ -114,8 +115,12 @@ var writeTweet = function(message){
     tags.push(tweet.trend);
     tags.push(tweet.trend);
     tags.push(tweet.trend);
+    tags.push(tweet.trend);
+    tags.push(tweet.trend);
+    tags.push(tweet.trend);
   }
   tweet.likes = 0;
   tweet.retweets = 0;
+  tweet.comments = [];
   addTweet(tweet);
 };
