@@ -54,7 +54,7 @@ $(document).ready(function(){
     let tweetIndex = $(this).context.parentElement.parentElement.dataset.homeindex;
     let tweetText = $(this).context.parentElement.parentElement.children[1].children[1].innerText;
     let newLikeCount = addLike(tweetIndex, tweetText);
-    $(this).context.nextSibling.innerHTML = newLikeCount.toString();
+    $(this).context.nextSibling.innerHTML = newLikeCount.toString() + ' likes';
   });
 
   $body.on('click', '.retweet', function() {
@@ -62,7 +62,7 @@ $(document).ready(function(){
     let tweetText = $(this).context.parentElement.parentElement.children[1].children[1].innerText;
     let tweetUser = $(this).context.parentElement.parentElement.children[1].children[0].dataset.user;
     let newRetweetCount = addRetweet(tweetIndex, tweetText, tweetUser);
-    $(this).context.nextSibling.innerHTML = newRetweetCount.toString();
+    $(this).context.nextSibling.innerHTML = newRetweetCount.toString() + ' retweets';
   });
 
   $tweetForm.on('submit', function(event) {
@@ -114,7 +114,7 @@ $(document).ready(function(){
     let numVisitorTweets = streams.users.visitor.length;
     let numVisitorFollowers = Math.floor((new Date() - 1499999999999) / 1000);
     let $userHandle = $(`<h2 class="user-handle user-link" data-user="visitor">@visitor</h2>`);
-    let $tweetCount = $(`<p class="tweet-count">${numVisitorTweets} tweets</p>`);
+    let $tweetCount = $(`<p class="tweet-count user-link" data-user="visitor">${numVisitorTweets} tweets</p>`);
     let $followerCount = $(`<p class="follower-count">${numVisitorFollowers.toLocaleString()} followers</p>`);
 
     $profileData.append($userHandle, $tweetCount, $followerCount);
@@ -148,9 +148,9 @@ $(document).ready(function(){
       $content.append($user, $message, $created_at);
   
       let $retweetButton = $(`<button class="tweet-action retweet">RT!</div>`);
-      let $numRetweets = $(`<p class="retweets-display">${tweet.retweets}</p>`);
+      let $numRetweets = $(`<p class="retweets-display">${tweet.retweets} retweets</p>`);
       let $likeButton = $(`<button class="tweet-action like">+1</div>`);
-      let $numLikes = $(`<p class="likes-display">${tweet.likes}</p>`);
+      let $numLikes = $(`<p class="likes-display">${tweet.likes} likes</p>`);
       $buttons.append($likeButton, $numLikes, $retweetButton, $numRetweets);
 
       $tweet.append($avatar, $content, $buttons);
@@ -166,5 +166,5 @@ $(document).ready(function(){
   };
 
   renderDisplay();
-  setInterval(renderDisplay, 8000);
+  setInterval(renderDisplay, 10000);
 });

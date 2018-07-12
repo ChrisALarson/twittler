@@ -204,6 +204,14 @@ body {
   outline: none;
 }
 
+.like {
+  background-color: #009999;
+}
+
+.retweet {
+  background-color: #DB5673;
+}
+
 /* ------------------- */
 /* FONTS */
 /* ------------------- */
@@ -283,12 +291,22 @@ html {
 
 .tweet-action {
   border-radius: 50%;
-  background-color: #DB5673;
   color: white;
   width: 35px;
   height: 35px;
   box-shadow: 1px 2px 1px rgba(0,0,0,0.1);
   border: 1px solid rgba(0,0,0,0.1);
+  margin-bottom: 3px;
+}
+
+.likes-display, .retweets-display {
+  font-size: 12px;
+  font-weight: 300;
+  font-style: italic;
+}
+
+.likes-display {
+  margin-bottom: 12px;
 }
 
 /* ------------------- */
@@ -327,7 +345,7 @@ html {
   height: 100%;
 }
 
-.handle:hover, .avatar-img:hover, .logo-img:hover, .follower:hover, .trend:hover {
+.handle:hover, .avatar-img:hover, .logo-img:hover, .follower:hover, .trend:hover, .user-link:hover {
   cursor: pointer;
   color: green;
 }
@@ -337,9 +355,9 @@ html {
 }
 
 /*
- - add ability to click into user's profile from "@--" and "x tweets"
- - add modal when tweet is clicked
- - track number of likes
- - add search
- - switch to grid & clean up css
+ - TODO:
+  - add ability to click into user's profile from "@--" and "x tweets"
+  - add modal when tweet is clicked
+  - add search
+  - switch to grid & clean up css
 */
