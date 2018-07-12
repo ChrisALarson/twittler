@@ -66,7 +66,7 @@ var generateRandomTweet = function(time){
   addTweet(tweet);
 };
 
-for(var i = 100; i > 0; i--){
+for(var i = 90; i > 0; i--){
   let time = new Date() - i * 10000000;
 
   generateRandomTweet(time);
@@ -74,7 +74,7 @@ for(var i = 100; i > 0; i--){
 
 var scheduleNextTweet = function(){
   generateRandomTweet();
-  setTimeout(scheduleNextTweet, Math.random() * 20000);
+  setTimeout(scheduleNextTweet, Math.random() * 17000);
 };
 scheduleNextTweet();
 
