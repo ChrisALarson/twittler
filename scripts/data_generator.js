@@ -72,17 +72,16 @@ var generateRandomTweet = function(time){
 
 for(var i = 100; i > 0; i--){
   let time = new Date() - i * 10000000;
-
   generateRandomTweet(time);
 }
 
 var scheduleNextTweet = function(){
   generateRandomTweet();
-  setTimeout(scheduleNextTweet, Math.random() * 25000);
+  setTimeout(scheduleNextTweet, Math.random() * 20000);
 };
 scheduleNextTweet();
 
-// utility function for letting students add "write a tweet" functionality
+// utility functions for letting students add "write a tweet" functionality
 // (note: not used by the rest of this file.)
 let getTrend = function(message) {
   let hashIndex = message.indexOf('#');
@@ -105,15 +104,10 @@ var writeTweet = function(message){
   tweet.user = visitor;
   tweet.message = message;
   tweet.created_at = new Date();
-  tweet.trend = getTrend(message);
-  if (!tags.includes(tweet.trend)) {
-    tags.push(tweet.trend);
-    tags.push(tweet.trend);
-    tags.push(tweet.trend);
-    tags.push(tweet.trend);
-    tags.push(tweet.trend);
-    tags.push(tweet.trend);
-    tags.push(tweet.trend);
+  let trend = getTrend(message);
+  tweet.trend = trend;
+  if (!tags.includes(trend)) {
+    tags.push(trend, trend, trend, trend, trend, trend, trend, trend, trend, trend);
   }
   tweet.likes = 0;
   tweet.retweets = 0;

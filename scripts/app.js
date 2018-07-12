@@ -146,7 +146,7 @@ $(document).ready(function(){
     let user = (targetUser === 'all' || targetTrend) ? 'visitor' : targetUser;
     let numUserTweets = streams.users[user].length;
     // generating number of followers based on current date (for us) or user name (for prebuilt users)
-    let numUserFollowers = (user === 'visitor') ? Math.floor((new Date() - 1499999999999) / 1000) : user.split('').reduce((acc, element) => acc + element.charCodeAt(), 0) * 2;    
+    let numUserFollowers = (user === 'visitor') ? Math.floor((new Date() - 1499999999999) / 10000) : user.split('').reduce((acc, element) => acc + element.charCodeAt(), 0) * 2;    
 
     let $userProfileImg = $(`<img src="images/${user}.png" alt="Profile Picture" class="profile-img user-link" data-user="${user}"></img>`)
     $profileImageContainer.append($userProfileImg);
