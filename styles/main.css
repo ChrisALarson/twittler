@@ -359,8 +359,10 @@ html {
 }
 
 /*
- - TODO:
-  - add modal when tweet is clicked
-  - add search
-  - switch to grid & clean up css
+- TODO: add ability to comment on tweets
+- TODO: add modal when tweet is clicked, displays tweets + comment box + comments
+- TODO: add alert for login?
+- TODO: add "my profile" button
+- TODO: add search functionality
+- TODO switch to grid everywhere & clean up css
 */
