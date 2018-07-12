@@ -21,11 +21,18 @@ $(document).ready(function(){
     renderDisplay();
   };
 
-  // add likes
+  // like and retweet
   const addLike = (tweetIndex, tweetTextContent = '') => {
     streams.home[tweetIndex].likes = streams.home[tweetIndex].likes + 1;
     let newLikeCount = streams.home[tweetIndex].likes;
     console.log(`Liked "${tweetTextContent}"! Total likes: `, newLikeCount);
+  };
+
+  const addRetweet = (tweetIndex, tweetTextContent = '', tweetUser = '') => {
+    streams.home[tweetIndex].retweets = streams.home[tweetIndex].retweets + 1;
+    let message = `RT: @${tweetUser}: ${tweetTextContent}`;
+    writeTweet(message);
+    renderDisplay();
   };
 
   // event handlers
@@ -39,8 +46,16 @@ $(document).ready(function(){
     filterUser(user);
   });
 
+  $body.on('click', '.tweet', function () {
+    console.log($(this));
+  });
+
   $body.on('dblclick', '.tweet', function() {
-    addLike($(this).context.dataset.homeindex, $(this).context.children[1].children[1].innerText);
+    let tweetIndex = $(this).context.dataset.homeindex;
+    let tweetText = $(this).context.children[1].children[1].innerText;
+    let tweetUser = $(this).context.children[1].children[0].dataset.user;
+    addLike(tweetIndex, tweetText);
+    addRetweet(tweetIndex, tweetText, tweetUser);
   });
 
   $tweetForm.on('submit', function(event) {
