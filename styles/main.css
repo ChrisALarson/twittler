@@ -185,7 +185,7 @@ main {
   align-items: flex-start;
 }
 
-.buttons {
+.tweet-actions {
   align-self: center;
 }
 
@@ -198,12 +198,12 @@ main {
   justify-self: end;
 }
 
-.comments-display, .retweets-display, .likes-display {
+.comment-display, .retweet-display, .like-display {
   align-self: center;
   justify-self: center;
 }
 
-.likes-container, .comments-container, .retweets-container {
+.like-container, .comment-container, .retweet-container {
   margin-bottom: 5px;
 }
 
@@ -229,7 +229,7 @@ body {
   background-color: #DB5673;
 }
 
-.buttons:hover {
+.tweet-actions:hover {
   cursor: pointer;
 }
 
@@ -316,7 +316,7 @@ html {
   color: white;
 }
 
-.likes-display, .retweets-display, .comments-display {
+.like-display, .retweet-display, .comment-display {
   font-size: 14px;
   font-weight: 500;
   font-style: italic;
@@ -376,7 +376,7 @@ html {
   height: 100%;
 }
 
-.handle:hover, .avatar-img:hover, .logo-img:hover, .follower:hover, .trend:hover, .user-link:hover, .comments-display:hover {
+.handle:hover, .avatar-img:hover, .logo-img:hover, .follower:hover, .trend:hover, .user-link:hover, .comment-display:hover {
   cursor: pointer;
   color: green;
 }
