@@ -334,6 +334,6 @@ html {
   color: green;
 }
 
-.profile-img, .tweet-button, .like-display, .comment-display, .retweet-display, .like, .comment, .retweet  {
+.profile-img, .tweet-button, .like-display, .comment-display, .retweet-display, .like-button, .comment-button, .retweet-button  {
   cursor: pointer;
 }
