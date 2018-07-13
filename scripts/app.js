@@ -73,8 +73,8 @@ $(document).ready(function(){
     let tweetIndex = $(this).data('index');
     let tweetText = $(this).data('message');
     let newLikeCount = addLike(tweetIndex, tweetText);
-    $(this).next().html(newLikeCount.toString());
     $(this).attr('src', 'images/like-filled.png');
+    $(this).next().html(newLikeCount.toString());
   });
 
   // retweeting
@@ -83,8 +83,8 @@ $(document).ready(function(){
     let tweetText = $(this).data('message');
     let tweetUser = $(this).data('user');
     let newRetweetCount = addRetweet(tweetIndex, tweetText, tweetUser);
-    $(this).next().html(newRetweetCount.toString());
     $(this).attr('src', 'images/retweet-filled.png');
+    $(this).next().html(newRetweetCount.toString());
   });
 
   // commenting
@@ -93,8 +93,8 @@ $(document).ready(function(){
     let commentText = prompt('What do you think about this tweet?');
     let comment = { commenter: '@visitor', comment: commentText };
     let newCommentCount = addComment(tweetIndex, comment);
-    $(this).next().html(newCommentCount.toString());
     $(this).attr('src', 'images/comment-filled.png');
+    $(this).next().html(newCommentCount.toString());
   });
 
   // viewing comments
