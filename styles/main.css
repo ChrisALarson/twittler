@@ -176,7 +176,7 @@ aside {
 /* ------------------- */
 
 body {
-  background-color: #00aced;
+  background-color: #1da1f2;
 }
 
 .tweet {
@@ -196,8 +196,8 @@ body {
 }
 
 .tweet, .tweet-textbox, .tweet-button, .small-profile-img-container {
-  box-shadow: 1px 2px 1px rgba(0,0,0,0.5);
-  border: 1px solid rgba(0,0,0,0.1);
+  box-shadow: 1px 2px 1px rgba(0,0,0,0.7);
+  border: 1px solid rgba(144,144,144,0.5);
   border-radius: 25px;
 }
 
@@ -210,23 +210,24 @@ html {
   font-family: "Lato", "Open Sans", "Helvetica Neue", Helvetica, Arial, sans-serif;
 }
 
-.time {
-  font-style: italic;
-  font-weight: 500;
-  font-size: 14px;
-  color: #bbbbbb;
-}
-
 .handle {
   color: black;
   font-weight: 550;
-  font-size: 18px;
+  font-size: 17px;
   margin-bottom: 15px;
 }
 
 .message {
-  font-size: 28px;
+  font-size: 26px;
+  font-weight: 350;
   margin-bottom: 15px;
+}
+
+.time {
+  font-style: italic;
+  font-weight: 400;
+  font-size: 14px;
+  color: #bbbbbb;
 }
 
 .profile, .trends-display, .followers-display {
@@ -237,7 +238,7 @@ html {
 .followers-header, .trends-header, .user-handle {
   font-size: 26px;
   font-weight: bold;
-  text-shadow: 1px 2px 1px rgba(0,0,0,0.5);
+  text-shadow: 1px 2px 1px rgba(0,0,0,0.7);
 }
 
 .user-handle {
@@ -266,9 +267,10 @@ html {
 }
 
 .like-display, .retweet-display, .comment-display {
-  font-size: 14px;
-  font-weight: 500;
+  font-size: 12px;
+  font-weight: 400;
   font-style: italic;
+  color: #696969;
 }
 
 
@@ -283,7 +285,8 @@ html {
   border: 1px solid white;
   overflow: hidden;
   background-color: white;
-  box-shadow: 1px 2px 1px rgba(0,0,0,0.5);
+  box-shadow: 1px 2px 1px rgba(0,0,0,0.7);
+  border: 1px solid rgba(144,144,144,0.5);
 }
 
 .profile-img {
@@ -299,7 +302,8 @@ html {
   border: 1px solid white;
   overflow: hidden;
   background-color: white;
-  box-shadow: 1px 2px 1px rgba(0,0,0,0.5);
+  box-shadow: 1px 2px 1px rgba(0,0,0,0.7);
+  border: 1px solid rgba(144,144,144,0.5);
 }
 
 .small-profile-img {
@@ -316,7 +320,7 @@ html {
   border: 1px solid white;
   overflow: hidden;
   background-color: white;
-  box-shadow: 1px 1px 1px rgba(0,0,0,0.1);
+  box-shadow: 1px 1px 1px rgba(0,0,0,0.2);
 }
 
 .avatar-img {
