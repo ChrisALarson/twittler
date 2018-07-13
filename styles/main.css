@@ -338,6 +338,6 @@ html {
   color: green;
 }
 
-.profile-img, .tweet-button, .like-display, .comment-display, .retweet-display, .like-button, .comment-button, .retweet-button  {
+.profile-img, .tweet-button, .comment-display, .like-button, .comment-button, .retweet-button  {
   cursor: pointer;
 }
