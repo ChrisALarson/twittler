@@ -77,7 +77,7 @@ for(var i = 100; i > 0; i--){
 
 var scheduleNextTweet = function(){
   generateRandomTweet();
-  setTimeout(scheduleNextTweet, Math.random() * 20000);
+  setTimeout(scheduleNextTweet, Math.random() * 18000);
 };
 scheduleNextTweet();
 

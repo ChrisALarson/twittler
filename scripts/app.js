@@ -64,12 +64,12 @@ $(document).ready(function(){
 
   // viewing user's timeline 
   $body.on('click', '.user-link', function() {
-    let user = $(this).context.dataset.user || $(this).data('user');
+    let user = $(this).data('user');
     filterUser(user);
   });
 
   // liking
-  $body.on('click', '.like', function() {
+  $body.on('click', '.like-button', function() {
     let tweetIndex = $(this).data('index');
     let tweetText = $(this).data('message');
     let newLikeCount = addLike(tweetIndex, tweetText);
@@ -78,7 +78,7 @@ $(document).ready(function(){
   });
 
   // retweeting
-  $body.on('click', '.retweet', function() {
+  $body.on('click', '.retweet-button', function() {
     let tweetIndex = $(this).data('index');
     let tweetText = $(this).data('message');
     let tweetUser = $(this).data('user');
@@ -88,7 +88,7 @@ $(document).ready(function(){
   });
 
   // commenting
-  $body.on('click', '.comment', function() {
+  $body.on('click', '.comment-button', function() {
     let tweetIndex = $(this).data('index');
     let commentText = prompt('What do you think about this tweet?');
     let comment = { commenter: '@visitor', comment: commentText };
@@ -181,7 +181,7 @@ $(document).ready(function(){
     
     // user's data
     let $profileData = $(`<div class="profile-data"></div>`);
-    let $userHandle = $(`<h2 class="user-handle user-link>@${user}</h2>`);
+    let $userHandle = $(`<h2 class="user-handle user-link">@${user}</h2>`);
     let $tweetCount = $(`<p class="tweet-count user-link">${numUserTweets} tweets</p>`);
     let $followerCount = $(`<p class="follower-count">${numUserFollowers.toLocaleString()} followers</p>`);
     $profileData.append($userHandle, $tweetCount, $followerCount);
@@ -210,7 +210,7 @@ $(document).ready(function(){
     let $avatar = $(`<div class="avatar-img-container"><img src="images/${tweet.user}.png" class="avatar-img user-link"/></div>`);
 
     // main tweet content
-    let $content = $(`<div class="content"></div>`);
+    let $content = $(`<div class="tweet-content"></div>`);
     let $user = $(`<p class="handle user-link">@${tweet.user}</p>`);
     let $message = $(`<p class="message">${tweet.message}</p>`);
     let $createdAt = $(`<p class="time">${moment(tweet.created_at).fromNow()}</p>`);
@@ -238,7 +238,7 @@ $(document).ready(function(){
     function createActionContainer(name, prop) {
       let img = (prop) ? `${name}-filled` : `${name}`;
       let $container = $(`<div class="${name}-container tweet-data"></div>`);
-      let $button = $(`<img src="images/${img}.png" alt="${name}" class="tweet-action ${name}"></img>`);
+      let $button = $(`<img src="images/${img}.png" alt="${name}" class="${name}-button"></img>`);
       let $numData = $(`<span class="${name}-display">${prop}</span>`);
       $container.append($button, $numData);
       return $container;

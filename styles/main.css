@@ -46,25 +46,26 @@ table {
   border-collapse: collapse;
   border-spacing: 0;
 }
-
-
-/* ------------------- */
-/* STRUCTURE */
-/* ------------------- */
-
 html {
     overflow-y: scroll;
 }
 
-/* GRIDS */
+
+/* ------------------- */
+/* POSITIONING */
+/* ------------------- */
+
+/* PAGE */
 body {
   display: grid;
   grid-template-rows: 10% 80% 10%;
 }
 
 header {
-  display: flex;
-  justify-content: center;
+  display: grid;
+  grid-template-rows: auto;
+  justify-items: center;
+  align-items: center;
 }
 
 section {
@@ -72,10 +73,34 @@ section {
   grid-template-columns: 22% 62% 16%;
 }
 
+/* TWEETS */
+.tweet-creator {
+  display: grid;
+  align-items: center;
+  justify-items: center;
+  height: 60px;
+  margin-bottom: 20px;
+}
+
 .tweet-form {
   display: grid;
   grid-template-columns: 55px auto 15%;
   grid-gap: 12px;
+  width: 95%;
+}
+
+.tweets-display {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+}
+
+.tweet {
+  width: 100%;
+  margin-bottom: 15px;
+  padding-top: 15px;
+  padding-bottom: 15px;
+
 }
 
 .tweet {
@@ -84,116 +109,16 @@ section {
   grid-gap: 5px;
 }
 
+.tweet-actions {
+  align-self: center;
+}
+
 .tweet-data {
   display: grid;
   grid-template-columns: 50% 50%;
 }
 
-/* SIDEBARS */
-aside {
-  display: flex;
-  flex-direction: column;
-  align-items: flex-start;
-  padding-left: 10px;
-  padding-right: 10px;
-}
-
-.trends-display, .followers-display, .profile {
-  width: 100%;
-  align-self: center;
-}
-
-.followers-header, .trends-header {
-  text-align: center;
-  margin-top: 10px;
-  margin-bottom: 15px;
-}
-
-.followers, .trends {
-  text-align: center;
-}
-
-.follower, .trend {
-  margin-bottom: 10px;
-  text-align: center;
-  overflow-wrap: break-word;
-}
-
-/* PROFILE */
-.profile {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  height: 300px;
-  margin-bottom: 10px;
-  justify-content: center;
-}
-
-.profile-img-container {
-  margin-bottom: 10px;
-}
-.profile-data {
-  width: 80%;
-}
-
-/* TWEETS */
-main {
-  width: 100%;
-}
-
-.tweet-creator {
-  display: flex;
-  justify-content: center;
-  margin-bottom: 10px;
-  height: 75px;
-}
-
-.tweet-form {
-  width: 95%;
-  margin-top: 10px;
-  margin-bottom: 10px;
-}
-
-.tweet-textbox {
-  border-radius: 25px;
-}
-
-.tweet-button {
-  border-radius: 25px;
-}
-
-.tweets-display {
-  width: 100%;
-  display: flex;
-  flex-direction: column;
-  align-items: flex-start;
-}
-
-.tweet {
-  width: 100%;
-  margin-bottom: 15px;
-  background-color: white;
-  padding-top: 15px;
-  padding-bottom: 15px;
-  box-shadow: 1px 2px 1px rgba(0,0,0,0.5);
-  border-radius: 25px;
-}
-
-.content {
-  display: flex;
-  flex-direction: column;
-  align-items: flex-start;
-}
-
-.tweet-actions {
-  align-self: center;
-}
-
-.time {
-  margin-top: auto;
-}
-
-.comment, .retweet, .like {
+.comment-button, .retweet-button, .like-button {
   align-self: center;
   justify-self: end;
 }
@@ -207,18 +132,55 @@ main {
   margin-bottom: 5px;
 }
 
+/* SIDEBARS */
+aside {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+}
+
+.trends-display, .followers-display, .profile {
+  width: 100%;
+  align-self: center;
+}
+
+.followers-header, .trends-header {
+  margin-bottom: 15px;
+}
+
+.follower, .trend {
+  margin-bottom: 10px;
+  overflow-wrap: break-word;
+}
+
+/* PROFILE */
+.profile {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  height: 300px;
+  margin-bottom: 20px;
+}
+
+.profile-img-container {
+  margin-bottom: 10px;
+}
+
+
+.user-handle, .tweet-count, .follower-count {
+  margin-bottom: 10px;
+}
 
 /* ------------------- */
-/* COLORING */
+/* COLORS & BORDERS */
 /* ------------------- */
 
 body {
   background-color: #00aced;
 }
 
-.tweet-textbox, .tweet-button, .small-profile-img-container {
-  box-shadow: 1px 2px 1px rgba(0,0,0,0.5);
-  border: 1px solid rgba(0,0,0,0.5);
+.tweet {
+  background-color: white;
 }
 
 .tweet:hover {
@@ -229,17 +191,19 @@ body {
   background-color: #DB5673;
 }
 
-.tweet-actions:hover {
-  cursor: pointer;
-}
-
 *:focus {
   outline: none;
 }
 
+.tweet, .tweet-textbox, .tweet-button, .small-profile-img-container {
+  box-shadow: 1px 2px 1px rgba(0,0,0,0.5);
+  border: 1px solid rgba(0,0,0,0.1);
+  border-radius: 25px;
+}
+
 
 /* ------------------- */
-/* FONTS */
+/* TYPOGRAPHY */
 /* ------------------- */
 
 html {
@@ -270,29 +234,14 @@ html {
   text-align: center;
 }
 
-.followers-header {
+.followers-header, .trends-header, .user-handle {
   font-size: 26px;
   font-weight: bold;
-  color: white;
-  text-shadow: 1px 2px 1px rgba(0,0,0,0.5);
-}
-
-.trends-header {
-  font-size: 26px;
-  font-weight: bold;
-  color: white;
   text-shadow: 1px 2px 1px rgba(0,0,0,0.5);
 }
 
 .user-handle {
-  font-weight: bold;
   font-size: 20px;
-  text-shadow: 1px 2px 1px rgba(0,0,0,0.5);
-  margin-bottom: 10px;
-}
-
-.tweet-count, .follower-count {
-  margin-bottom: 10px;
 }
 
 .tweet-textbox {
@@ -321,6 +270,7 @@ html {
   font-weight: 500;
   font-style: italic;
 }
+
 
 /* ------------------- */
 /* IMAGES */
@@ -357,8 +307,6 @@ html {
   height: 100%;
 }
 
-
-
 .avatar-img-container {
   justify-self: center;
   width: 75px;
@@ -376,18 +324,16 @@ html {
   height: 100%;
 }
 
+
+/* ------------------- */
+/* CURSORS */
+/* ------------------- */
+
 .handle:hover, .avatar-img:hover, .logo-img:hover, .follower:hover, .trend:hover, .user-link:hover, .comment-display:hover {
   cursor: pointer;
   color: green;
 }
 
-.profile-img, .tweet-button {
+.profile-img, .tweet-button, .like-display, .comment-display, .retweet-display, .like, .comment, .retweet  {
   cursor: pointer;
 }
-
-/*
-- TODO: add modal when tweet is clicked, displays tweets + comment box + comments
-- TODO: add alert for login?
-- TODO: add search functionality
-- TODO switch to grid everywhere & clean up css
-*/
